@@ -12,6 +12,7 @@ import com.example.model.FirstResponseModel;
 @RequestMapping(path="/first")
 public class FirstController {
 	
+	
 	@RequestMapping("/echo")
 	public String echo() {
 		return "selam";
