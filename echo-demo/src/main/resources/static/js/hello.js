@@ -1,17 +1,33 @@
 angular.module('turbine', []).controller('turbineCtrl', function($http) {
-	var self = this;
-	$http.get('resource/').then(function(response) {
-		self.greeting = response.data;
-	})
+
 	
-	var self = this;
-	var data;
-	this.add = function() {
-		
+	var turbineList = this;
+	turbineList.send = function(data) {
+
 		$http.post('/turbine/config/', data).then(function(response) {
-			self.greeting = response.data;
+			turbine.result = response.data;
 		})
 	};
+
+	turbineList.create = function () {
+		requestModel = {
+			name : this.name,
+			pace : {
+				first : this.firstPace,
+				last : this.lastPace
+			},
+			pressure : {
+				first : this.firstPressure,
+				last : this.lastPressure
+			},
+			prodFactor : {
+				first : this.firstProdFactor,
+				last : this.lastProdFactor
+			}
+		};
+		strRequest = JSON.stringify(requestModel);
+		this.send(strRequest);
+	}
 	
 	
 	
