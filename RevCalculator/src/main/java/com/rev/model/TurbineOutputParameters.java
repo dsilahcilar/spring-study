@@ -1,4 +1,4 @@
-package model;
+package com.rev.model;
 
 public class TurbineOutputParameters {
 	private String name;

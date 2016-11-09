@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import model.ResponseType;
-import model.TurbineOutputParameters;
-import service.RevCalculatorService;
+import com.rev.model.ResponseType;
+import com.rev.model.TurbineOutputParameters;
+import com.rev.service.RevCalculatorService;
 
 @RequestMapping("/rev")
 public class RevController {

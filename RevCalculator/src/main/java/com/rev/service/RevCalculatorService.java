@@ -1,10 +1,10 @@
-package service;
+package com.rev.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rev.repository.TurbineOutputRepository;
 
-import model.TurbineOutputParameters;
+import com.rev.model.TurbineOutputParameters;
 
 public class RevCalculatorService {
 	@Autowired
