@@ -2,7 +2,10 @@ package com.rev.persistence;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class TurbineData {
@@ -22,6 +25,7 @@ public class TurbineData {
 		return "TurbineData [id=" + id + ", revenue=" + revenue + ", prod=" + prod + ", turbineName=" + turbineName
 				+ ", timeStamp=" + timeStamp + "]";
 	}
+	
 	public Long getId() {
 		return id;
 	}

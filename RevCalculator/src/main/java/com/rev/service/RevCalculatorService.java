@@ -22,6 +22,7 @@ public class RevCalculatorService {
 		turbineData.setTurbineName(request.getName());
 		turbineData.setTimeStamp(request.getTimeStamp());
 		turbineData.setRevenue(result);
+		turbineData.setId(request.getId());
 		save(turbineData);
 	}
 	
