@@ -3,12 +3,14 @@ package com.rev.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.rev.repository.TurbineOutputRepository;
 
 import com.rev.model.TurbineOutputParameters;
 import com.rev.persistence.TurbineData;
 
+@Service
 public class RevCalculatorService {
 	@Autowired
 	private TurbineOutputRepository repository;
@@ -31,12 +33,14 @@ public class RevCalculatorService {
 		return repository.findByTurbineName(name);
 	}
 	
+	
 	public void save(TurbineData turbineData) {
 		TurbineData savedEntity = repository.save(turbineData);
 		System.out.println(savedEntity);
 	}
 	
-	public Double total() {
-		return 100d;
+	public Double total(String name) {
+	    Object[] result = repository.sumProdSumRevenue(name);
+		return Double.valueOf((String) result[0]);
 	}
 }

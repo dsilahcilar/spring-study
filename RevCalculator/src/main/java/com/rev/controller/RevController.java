@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.rev.model.ResponseType;
 import com.rev.model.TurbineOutputParameters;
@@ -19,6 +20,7 @@ import com.rev.persistence.TurbineData;
 import com.rev.service.RevCalculatorService;
 
 @RequestMapping("/rev")
+@RestController
 public class RevController {
 	@Autowired
 	private RevCalculatorService revCalculatorService;
@@ -38,7 +40,7 @@ public class RevController {
 		return revCalculatorService.getAll();
 	}
 	
-	@RequestMapping(path = "/${name}", method = RequestMethod.GET)
+	@RequestMapping(path = "/{name}", method = RequestMethod.GET)
 	@ResponseStatus(code=HttpStatus.OK)
 	public List<TurbineData> findByName(@PathVariable String name) {
 		return revCalculatorService.findByName(name);
