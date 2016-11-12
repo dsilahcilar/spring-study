@@ -1,5 +1,6 @@
 package com.rev.persistence;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,6 +10,7 @@ public class TurbineData {
 	private Long id;
 	private Double revenue;
 	private Integer prod;
+	// @Column(unique=true)
 	private String turbineName;
 	private Long timeStamp;
 	
