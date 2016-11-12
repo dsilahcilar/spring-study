@@ -44,4 +44,8 @@ public class RevCalculatorService {
         Long prod = (Long) result[1];
         return new SumModel(sum, prod);
     }
+
+    public TurbineData findById(Long id) {
+        return repository.findOne(id);
+    }
 }

@@ -40,7 +40,14 @@ public class RevController {
 	public List<TurbineData> getAll() {
 		return revCalculatorService.getAll();
 	}
-	
+
+
+	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
+	@ResponseStatus(code=HttpStatus.OK)
+	public TurbineData findById(Long id) {
+		return revCalculatorService.findById(id);
+	}
+
 	@RequestMapping(path = "/{name}", method = RequestMethod.GET)
 	@ResponseStatus(code=HttpStatus.OK)
 	public List<TurbineData> findByName(@PathVariable String name) {
