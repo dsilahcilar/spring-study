@@ -42,9 +42,9 @@ public class RevController {
 	}
 
 
-	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(path = "/id/{id}", method = RequestMethod.GET)
 	@ResponseStatus(code=HttpStatus.OK)
-	public TurbineData findById(Long id) {
+	public TurbineData findById(@PathVariable  Long id) {
 		return revCalculatorService.findById(id);
 	}
 
