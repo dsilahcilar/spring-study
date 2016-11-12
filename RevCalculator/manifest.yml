@@ -6,4 +6,3 @@ applications:
     timeout : 180
 env:
    SPRING_PROFILES_ACTIVE : default
-~

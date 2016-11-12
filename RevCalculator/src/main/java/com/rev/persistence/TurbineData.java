@@ -13,6 +13,13 @@ public class TurbineData {
 	private Long timeStamp;
 	
 	
+	
+	
+	@Override
+	public String toString() {
+		return "TurbineData [id=" + id + ", revenue=" + revenue + ", prod=" + prod + ", turbineName=" + turbineName
+				+ ", timeStamp=" + timeStamp + "]";
+	}
 	public Long getId() {
 		return id;
 	}

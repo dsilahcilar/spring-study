@@ -12,7 +12,6 @@ public class EchoDemoApplication {
 		SpringApplication.run(EchoDemoApplication.class, args);
 	}
 	
-	
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.rev.repository.TurbineOutputRepository;
 
 import com.rev.model.TurbineOutputParameters;
+import com.rev.persistence.TurbineData;
 
 public class RevCalculatorService {
 	@Autowired
@@ -12,11 +13,16 @@ public class RevCalculatorService {
 	
 	public void calculateRevenue(TurbineOutputParameters request) {
 		double result = request.getUnitPrice() * Double.valueOf(request.getPowerProd());
-		save();
+		TurbineData turbineData = new TurbineData();
+		turbineData.setProd(request.getPowerProd());
+		turbineData.setTurbineName(request.getName());
+		turbineData.setTimeStamp(request.getTimeStamp());
+		turbineData.setRevenue(request.getUnitPrice());
+		save(turbineData);
 	}
 	
-	public void save() {
-		repository.save(new TurbineOutputParameters());
-		System.out.println("Saved");
+	public void save(TurbineData turbineData) {
+		TurbineData savedEntity = repository.save(turbineData);
+		System.out.println(savedEntity);
 	}
 }
