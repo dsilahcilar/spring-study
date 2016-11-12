@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
+import com.rev.model.SumModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +45,12 @@ public class RevController {
 	@ResponseStatus(code=HttpStatus.OK)
 	public List<TurbineData> findByName(@PathVariable String name) {
 		return revCalculatorService.findByName(name);
+	}
+
+	@RequestMapping(path = "/{name}/sum", method = RequestMethod.GET)
+	@ResponseStatus(code=HttpStatus.OK)
+	public SumModel sumByName(@PathVariable String name) {
+		return revCalculatorService.sumByName(name);
 	}
 	
 	

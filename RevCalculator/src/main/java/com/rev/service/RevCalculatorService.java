@@ -1,47 +1,47 @@
 package com.rev.service;
 
-import java.util.List;
-
+import com.rev.model.SumModel;
+import com.rev.model.TurbineOutputParameters;
+import com.rev.persistence.TurbineData;
+import com.rev.repository.TurbineOutputRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rev.repository.TurbineOutputRepository;
-
-import com.rev.model.TurbineOutputParameters;
-import com.rev.persistence.TurbineData;
+import java.util.List;
 
 @Service
 public class RevCalculatorService {
-	@Autowired
-	private TurbineOutputRepository repository;
-	
-	public void calculateRevenue(TurbineOutputParameters request) {
-		double result = request.getUnitPrice() * Double.valueOf(request.getPowerProd());
-		TurbineData turbineData = new TurbineData();
-		turbineData.setProd(request.getPowerProd());
-		turbineData.setTurbineName(request.getName());
-		turbineData.setTimeStamp(request.getTimeStamp());
-		turbineData.setRevenue(result);
-		turbineData.setId(request.getId());
-		save(turbineData);
-	}
-	
-	public List<TurbineData> getAll() {
-		return repository.findAll();
-	}
-	
-	public List<TurbineData> findByName(String name) {
-		return repository.findByTurbineName(name);
-	}
-	
-	
-	public void save(TurbineData turbineData) {
-		TurbineData savedEntity = repository.save(turbineData);
-		System.out.println(savedEntity);
-	}
-	
-	public Double total(String name) {
-	    Object[] result = repository.sumProdSumRevenue(name);
-		return Double.valueOf((String) result[0]);
-	}
+    @Autowired
+    private TurbineOutputRepository repository;
+
+    public void calculateRevenue(TurbineOutputParameters request) {
+        double result = request.getUnitPrice() * Double.valueOf(request.getPowerProd());
+        TurbineData turbineData = new TurbineData();
+        turbineData.setProd(request.getPowerProd());
+        turbineData.setTurbineName(request.getName());
+        turbineData.setTimeStamp(request.getTimeStamp());
+        turbineData.setRevenue(result);
+        save(turbineData);
+    }
+
+    public List<TurbineData> getAll() {
+        return repository.findAll();
+    }
+
+    public List<TurbineData> findByName(String name) {
+        return repository.findByTurbineName(name);
+    }
+
+
+    public void save(TurbineData turbineData) {
+        TurbineData savedEntity = repository.save(turbineData);
+        System.out.println(savedEntity);
+    }
+
+    public SumModel sumByName(String name) {
+        Object[] result = (Object[]) repository.sumProdSumRevenue(name)[0];
+        Double sum = (Double) result[0];
+        Long prod = (Long) result[1];
+        return new SumModel(sum, prod);
+    }
 }
