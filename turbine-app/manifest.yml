@@ -1,0 +1,7 @@
+---
+applications:
+  - name: turbine-app
+    buildpack: java_buildpack
+    path: target/turbine-app-0.0.1-SNAPSHOT.jar
+env:
+   SPRING_PROFILES_ACTIVE: default
