@@ -3,6 +3,7 @@ applications:
   - name: rev_calculator
     buildpack: java_buildpack
     path: target/RevCalculator-0.0.1-SNAPSHOT.jar
-    timeout : 180
+    services:
+      - turbine-postgresql
 env:
    SPRING_PROFILES_ACTIVE: cloud

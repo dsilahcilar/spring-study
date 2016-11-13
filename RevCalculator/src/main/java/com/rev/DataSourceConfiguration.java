@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-@Configuration
+//@Configuration
 public class DataSourceConfiguration {
 	   
-	@Profile("cloud")	    
-   @Bean
+   //@Profile("cloud")	    
+  // @Bean
     public DataSource dataSource() {
         CloudFactory cloudFactory = new CloudFactory();
         Cloud cloud = cloudFactory.getCloud();
