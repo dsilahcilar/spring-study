@@ -18,7 +18,6 @@ public class SchedulerConfiguration {
 
     @Scheduled(fixedDelayString = "${rev.scheduler.delay}")
     public void checkTurbineService() {
-        System.out.println("work...");
         Map<String, Turbine> turbineMap = turbineService.getTurbineMap();
         Collection<Turbine> turbines = turbineMap.values();
         for (Turbine turbine : turbines) {

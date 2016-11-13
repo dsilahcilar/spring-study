@@ -40,9 +40,9 @@ public class RevCalculatorService {
 
     public SumModel sumByName(String name) {
         Object[] result = (Object[]) repository.sumProdSumRevenue(name)[0];
-        Double sum = (Double) result[0];
+        Double revenue = (Double) result[0];
         Long prod = (Long) result[1];
-        return new SumModel(sum, prod);
+        return new SumModel(revenue, prod);
     }
 
     public TurbineData findById(Long id) {

@@ -1,6 +1,7 @@
 package com.turbine.service;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -22,6 +23,10 @@ public class TurbineService {
 	private RestTemplate restTemplate;
 	@Autowired
 	private ApplicationProperties properties;
+	
+	public Collection<Turbine> getAll() {
+		return turbineMap.values();
+	}
 	
 	public Map<String, Turbine> getTurbineMap() {
 		return turbineMap;

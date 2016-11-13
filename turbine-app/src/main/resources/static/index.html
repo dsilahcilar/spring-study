@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<title>Hello AngularJS</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+</style>
+</head>
+
+<body ng-app="turbine">
+  <div class="container">
+    <h1>Turbine Panel</h1>
+    
+     <div ng-controller="turbineCtrl as turbineList" ng-cloak class="ng-cloak">
+	    <form ng-submit="turbineList.create()">
+		    <input type="text" ng-model="turbineList.name"  size="30"
+		               placeholder="name"> <br>
+
+            <input type="text" ng-model="turbineList.firstPace"  size="30"
+                   placeholder="first pace"> <br>
+            <input type="text" ng-model="turbineList.lastPace"  size="30"
+                   placeholder="last pace"> <br>
+
+            <input type="text" ng-model="turbineList.firstPressure"  size="30"
+                   placeholder="first pressure"> <br>
+            <input type="text" ng-model="turbineList.lastPressure"  size="30"
+                   placeholder="last pressure"> <br>
+
+            <input type="text" ng-model="turbineList.firstProdFactor"  size="30"
+                   placeholder="first prodFactor"> <br>
+            <input type="text" ng-model="turbineList.lastProdFactor"  size="30"
+                   placeholder="last prodFactor"> <br>
+
+
+            <input class="btn btn-primary" type="submit" value="add">
+	    </form>    
+    
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="js/hello.js"></script>
+  <script src="js/ui-bootstrap-tpls-2.2.0.min.js"></script>
+
+</body>
+</html>
