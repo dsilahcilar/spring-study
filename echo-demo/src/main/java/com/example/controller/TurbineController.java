@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.ApplicationProperties;
 import com.example.model.TurbineRequestModel;
 
 @RestController
@@ -14,10 +15,12 @@ import com.example.model.TurbineRequestModel;
 public class TurbineController {
 	@Autowired
 	private RestTemplate restTemplate;
+	@Autowired
+	private ApplicationProperties applicationProperties;
 	
 	@RequestMapping(path = "/", method = RequestMethod.POST)
 	public TurbineRequestModel turbine(@RequestBody TurbineRequestModel request ) {
-		Object response = restTemplate.postForEntity("http://localhost:8081/turbine/", request, Object.class);
+		Object response = restTemplate.postForEntity(applicationProperties.getUrl() + "/turbine/", request, Object.class);
 		return request;
 	}
 }

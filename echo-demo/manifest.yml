@@ -4,4 +4,4 @@ applications:
     buildpack: java_buildpack
     path: target/config-service-0.0.1-SNAPSHOT.jar
 env:
-   SPRING_PROFILES_ACTIVE: default
+   SPRING_PROFILES_ACTIVE: cloud
