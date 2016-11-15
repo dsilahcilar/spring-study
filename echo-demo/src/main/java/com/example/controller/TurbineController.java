@@ -41,5 +41,10 @@ public class TurbineController {
         restTemplate.delete(applicationProperties.getUrl() + "/turbines/" + turbineName, TurbineRequestModel[].class);
     }
 
+    @RequestMapping(path = "/turbines/{turbineName}/{unitPrice}", method = RequestMethod.POST)
+    public void updateUnitPrice(@PathVariable String turbineName, @PathVariable Double unitPrice) {
+        restTemplate.postForLocation(applicationProperties.getUrl() + "/turbines/" + turbineName + "/" + unitPrice , TurbineRequestModel[].class);
+    }
+
 
 }

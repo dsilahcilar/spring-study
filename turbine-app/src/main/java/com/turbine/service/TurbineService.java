@@ -84,6 +84,9 @@ public class TurbineService {
 		System.out.println("timeStamp" + parameters.getTimeStamp());
 		restTemplate.postForEntity(properties.getUrl() + "/rev/" , parameters , Void.class);
 	}
-	
-	
+
+
+	public void updateUnitPrice(String turbineName, Double unitPrice) {
+		turbineMap.get(turbineName).setUnitPrice(unitPrice);
+	}
 }
