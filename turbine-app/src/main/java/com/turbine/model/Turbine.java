@@ -8,6 +8,15 @@ public class Turbine {
     private RangeModel pace;
     private RangeModel pressure;
     private RangeModel prodFactor;
+    private Double unitPrice = new Double(3.0);
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
 
     public State getState() {
         return state;

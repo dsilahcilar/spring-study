@@ -80,6 +80,7 @@ public class TurbineService {
 		parameters.setName(turbine.getName());
 		parameters.setPowerProd(result);
 		parameters.setTimeStamp(Calendar.getInstance().getTimeInMillis());
+		parameters.setUnitPrice(turbine.getUnitPrice());
 		System.out.println("timeStamp" + parameters.getTimeStamp());
 		restTemplate.postForEntity(properties.getUrl() + "/rev/" , parameters , Void.class);
 	}

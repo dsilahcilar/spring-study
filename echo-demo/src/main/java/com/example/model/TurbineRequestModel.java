@@ -3,6 +3,21 @@ package com.example.model;
 public class TurbineRequestModel {
 	private String name;
 
+	private String state;
+
+	private RangeModel pace;
+	private RangeModel pressure;
+	private RangeModel prodFactor;
+	private Double unitPrice = new Double(3.0);
+
+	public Double getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
 	public String getState() {
 		return state;
 	}
@@ -10,13 +25,6 @@ public class TurbineRequestModel {
 	public void setState(String state) {
 		this.state = state;
 	}
-
-	private String state;
-
-	private RangeModel pace;
-	private RangeModel pressure;
-	private RangeModel prodFactor;
-
 
 	public String getName() {
 		return name;

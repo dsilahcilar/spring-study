@@ -4,7 +4,7 @@ public class TurbineOutputParameters {
 	private String name;
 	private Long timeStamp;
 	private Integer powerProd;
-	private Double unitPrice = new Double(3.0);
+	private Double unitPrice;
 	
 	
 	public Double getUnitPrice() {
