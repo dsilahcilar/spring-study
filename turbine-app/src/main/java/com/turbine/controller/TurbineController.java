@@ -15,17 +15,17 @@ import com.turbine.model.Turbine;
 import com.turbine.service.TurbineService;
 
 @RestController
-@RequestMapping("/turbine")
+@RequestMapping("/turbines")
 public class TurbineController {
 	@Autowired
 	private TurbineService turbineService;
 	
-	@RequestMapping(path = "/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Turbine> listAll() {
 		return turbineService.getAll();
 	}
 	
-	@RequestMapping(path = "/", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public StartParameters addNew(@RequestBody StartParameters request) {
 		System.out.println("Request geldi " + request.toString() );
 		turbineService.create(request);
@@ -44,7 +44,7 @@ public class TurbineController {
 		turbineService.stop(turbineName);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(path = "/delete",method = RequestMethod.GET)
 	public void stop2(@RequestParam String turbineName) {
 		System.out.println("Turbine name : " +turbineName );
 		turbineService.stop(turbineName);
