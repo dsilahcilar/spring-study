@@ -1,15 +1,23 @@
 package com.example.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class TurbineRequestModel {
 	private String name;
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	private String state;
+
 	private RangeModel pace;
 	private RangeModel pressure;
 	private RangeModel prodFactor;
+
+
 	public String getName() {
 		return name;
 	}
