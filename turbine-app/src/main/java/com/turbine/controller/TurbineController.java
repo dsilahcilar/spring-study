@@ -38,8 +38,8 @@ public class TurbineController {
         turbineService.stop(turbineName);
     }
 
-    @RequestMapping(path = "/{turbineName/{unitPrice}", method = RequestMethod.POST)
-    public void stop(@PathVariable String turbineName, @PathVariable Double unitPrice) {
+    @RequestMapping(path = "/{turbineName}/{unitPrice}", method = RequestMethod.POST)
+    public void updateUnitPrice(@PathVariable String turbineName, @PathVariable Double unitPrice) {
         turbineService.updateUnitPrice(turbineName, unitPrice);
     }
 
