@@ -27,7 +27,7 @@ public class TurbineController {
 
     @RequestMapping(path = "/turbine/config", method = RequestMethod.POST)
     public TurbineRequestModel turbine(@RequestBody TurbineRequestModel request) {
-        Object response = restTemplate.postForEntity(applicationProperties.getUrl() + "/turbines", request, Object.class);
+        restTemplate.postForEntity(applicationProperties.getUrl() + "/turbines", request, Object.class);
         return request;
     }
 
@@ -65,7 +65,7 @@ public class TurbineController {
     private SimpMessagingTemplate template;
 
 
-    @RequestMapping(path = "/websocket", method = RequestMethod.GET)
+    @RequestMapping(path = "/websocket", method = RequestMethod.POST)
     @ResponseStatus(code= HttpStatus.OK)
     public void webSocket() {
         template.convertAndSend("/topic/greetings", new Message("from", Calendar.getInstance().getTime().toString()));
