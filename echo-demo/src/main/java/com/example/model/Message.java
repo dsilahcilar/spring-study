@@ -1,27 +1,30 @@
 package com.example.model;
 
 public class Message {
-    private String from;
-    private String text;
+    private Integer prod;
+    private Long time;
 
-    public Message(String from, String text) {
-        this.from = from;
-        this.text = text;
+    public Message() {
     }
 
-    public String getFrom() {
-        return from;
+    public Message(Integer prod, Long time) {
+        this.prod = prod;
+        this.time = time;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public Integer getProd() {
+        return prod;
     }
 
-    public String getText() {
-        return text;
+    public void setProd(Integer prod) {
+        this.prod = prod;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 }

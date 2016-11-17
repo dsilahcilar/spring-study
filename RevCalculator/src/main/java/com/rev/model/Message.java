@@ -1,27 +1,27 @@
 package com.rev.model;
 
 public class Message {
-    private String from;
-    private String text;
+    private Integer prod;
+    private Long time;
 
-    public Message(String from, String text) {
-        this.from = from;
-        this.text = text;
+    public Message(Integer prod, Long time) {
+        this.prod = prod;
+        this.time = time;
     }
 
-    public String getFrom() {
-        return from;
+    public Integer getProd() {
+        return prod;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setProd(Integer prod) {
+        this.prod = prod;
     }
 
-    public String getText() {
-        return text;
+    public Long getTime() {
+        return time;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTime(Long time) {
+        this.time = time;
     }
 }

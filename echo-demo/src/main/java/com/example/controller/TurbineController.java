@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.ApplicationProperties;
-import com.example.model.Greeting;
 import com.example.model.Message;
 import com.example.model.TurbineRequestModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -50,25 +48,22 @@ public class TurbineController {
 
     @RequestMapping(path = "/turbines/{turbineName}/{unitPrice}", method = RequestMethod.POST)
     public void updateUnitPrice(@PathVariable String turbineName, @PathVariable Double unitPrice) {
-        restTemplate.postForLocation(applicationProperties.getUrl() + "/turbines/" + turbineName + "/" + unitPrice , TurbineRequestModel[].class);
+        restTemplate.postForLocation(applicationProperties.getUrl() + "/turbines/" + turbineName + "/" + unitPrice, TurbineRequestModel[].class);
     }
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting(Message message) throws Exception {
-        Thread.sleep(1000); // simulated delay
-        return new Greeting("Hello, " + message.getText() + "!");
+    @MessageMapping("/websocket")
+    @SendTo("/topic/turbines")
+    public Message turbines(Message message) throws Exception {
+        return message;
     }
-
 
     @Autowired
     private SimpMessagingTemplate template;
 
-
-    @RequestMapping(path = "/websocket", method = RequestMethod.POST)
-    @ResponseStatus(code= HttpStatus.OK)
-    public void webSocket() {
-        template.convertAndSend("/topic/greetings", new Message("from", Calendar.getInstance().getTime().toString()));
+    @RequestMapping(path = "/turbines/websocket", method = RequestMethod.POST)
+    @ResponseStatus(code = HttpStatus.OK)
+    public void webSocket(@RequestBody Message message) {
+        template.convertAndSend("/topic/turbines", message);
     }
 
 
