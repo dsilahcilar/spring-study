@@ -31,7 +31,7 @@
     </style>
 </head>
 
-<body ng-app="turbine">
+<body>
 <div class="container">
     <h1>Turbine Panel</h1>
 
@@ -88,21 +88,33 @@
                     <td>
                         <button class="btn btn-info" ng-click="turbineList.startItem(turbineItem.name);">Start</button>
                         <button class="btn btn-danger" ng-click="turbineList.stopItem(turbineItem.name);">Stop</button>
+                        <button class="btn btn-warning" ng-click="turbineList.setGraph(turbineItem.name);">Show Graph</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
-
+            <div>
+                <line-chart chart="chart" class="line-chart"></line-chart>
+            </div>
 
         </div>
     </div>
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/ui-bootstrap-tpls-2.2.0.min.js"></script>
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="js/lineChart.js"></script>
 <script src="js/hello.js"></script>
-<script src="js/ui-bootstrap-tpls-2.2.0.min.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(function() {
+      angular.bootstrap(document.body, ['turbine']);
+    });
+</script>
 
 </body>
 </html>

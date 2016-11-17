@@ -1,5 +1,5 @@
-angular.module('turbine', [])
-    .controller('turbineCtrl', function ($http) {
+angular.module('turbine', ['turbine.directive'])
+    .controller('turbineCtrl', function ($scope, $http) {
 
         var turbineList = this;
         turbineList.items = [];
@@ -41,6 +41,11 @@ angular.module('turbine', [])
             })
         }
 
+        turbineList.setGraph = function (itemName) {
+            turbineList.activeGraph = itemName;
+            turbineList.updateGraph();
+        }
+
         turbineList.updatePrice = function (itemName) {
             var unitprice = document.getElementsByName("pr" + itemName)[0].value;
             $http.post('/turbines/' + itemName + '/' + unitprice).then(function (response) {
@@ -59,22 +64,63 @@ angular.module('turbine', [])
 
         turbineList.isConnected = false;
 
-        var socket = new SockJS('/hello');
+
+        var socket = new SockJS('/websocket');
+
+
         stompClient = Stomp.over(socket);
+        stompClient.debug = null
         console.log('Init');
         stompClient.connect({}, function (frame) {
 
             isConnected = true;
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/topic/greetings', function (greeting) {
-                console.log(greeting.body);
-                //showGreeting(JSON.parse(greeting.body).content);
+            stompClient.subscribe('/topic/turbines', function (message) {
+                turbineList.showMessage(JSON.parse(message.body));
             });
         });
 
+        var allCharts = {};
+        var chartItems = [];
+
         turbineList.showMessage = function (message) {
 
+            chartItems = allCharts[message.turbineName];
+
+            if (!chartItems) {
+                chartItems = [];
+            }
+
+            var dataItem = {
+                timestamp: message.time,
+                value: message.prod
+            };
+
+            chartItems.push(dataItem);
+
+            if (chartItems.length > 40) {
+                chartItems.shift();
+            }
+
+            allCharts[message.turbineName] = chartItems;
+
         }
+        turbineList.updateGraph = function () {
+            chartItems = allCharts[turbineList.activeGraph];
+
+            if (chartItems) {
+                $scope.chart = {
+                    data: chartItems,
+                    max: 30
+                };
+
+                $scope.$apply();
+            }
+        }
+
+        myVar = setInterval(function () {
+            turbineList.updateGraph();
+        }, 1000);
 
 
     });
