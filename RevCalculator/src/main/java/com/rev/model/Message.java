@@ -14,6 +14,14 @@ public class Message {
         this.time = time;
     }
 
+    public String getTurbineName() {
+        return turbineName;
+    }
+
+    public void setTurbineName(String turbineName) {
+        this.turbineName = turbineName;
+    }
+
     public Integer getProd() {
         return prod;
     }
