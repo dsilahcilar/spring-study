@@ -18,7 +18,9 @@ public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfig
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/websocket").withSockJS();
+        registry.addEndpoint("/websocket")
+                .setAllowedOrigins("https://uc-config-service.run.aws-usw02-pr.ice.predix.io")
+                .withSockJS();
     }
 
 }
