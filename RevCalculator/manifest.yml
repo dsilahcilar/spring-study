@@ -1,6 +1,6 @@
 ---
 applications:
-  - name: uc-rev_calculator
+  - name: uc-rev-calculator
     buildpack: java_buildpack
     path: target/RevCalculator-0.0.1-SNAPSHOT.jar
     services:
