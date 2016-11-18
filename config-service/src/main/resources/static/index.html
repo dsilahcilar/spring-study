@@ -88,14 +88,20 @@
                     <td>
                         <button class="btn btn-info" ng-click="turbineList.startItem(turbineItem.name);">Start</button>
                         <button class="btn btn-danger" ng-click="turbineList.stopItem(turbineItem.name);">Stop</button>
-                        <button class="btn btn-warning" ng-click="turbineList.setGraph(turbineItem.name);">Show Graph</button>
+                        <button class="btn btn-warning" ng-click="turbineList.setGraph(turbineItem.name);">Show Graph
+                        </button>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <div>
+            <div class="revenue-area">
+                <h4>Total Prod: {{turbineList.totalProd}}</h4>
+                <h4>Total Revenue: {{turbineList.totalRevenue}}</h4>
+            </div>
+            <div class="chart-area">
                 <line-chart chart="chart" class="line-chart"></line-chart>
             </div>
+
 
         </div>
     </div>
@@ -111,8 +117,8 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {packages: ['corechart', 'line']});
-    google.charts.setOnLoadCallback(function() {
-      angular.bootstrap(document.body, ['turbine']);
+    google.charts.setOnLoadCallback(function () {
+        angular.bootstrap(document.body, ['turbine']);
     });
 </script>
 

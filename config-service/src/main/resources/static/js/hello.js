@@ -82,6 +82,7 @@ angular.module('turbine', ['turbine.directive'])
 
         var allCharts = {};
         var chartItems = [];
+        var totalItems = [];
 
         turbineList.showMessage = function (message) {
 
@@ -103,9 +104,20 @@ angular.module('turbine', ['turbine.directive'])
             }
 
             allCharts[message.turbineName] = chartItems;
+            message.sumRevenue = message.sumRevenue.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            message.sumProd = message.sumProd.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            totalItems[message.turbineName] = {
+                totalRevenue: message.sumRevenue,
+                totalProd: message.sumProd
+            };
 
         }
         turbineList.updateGraph = function () {
+            var totals = totalItems[turbineList.activeGraph]
+            if (totals) {
+                turbineList.totalRevenue = totals.totalRevenue;
+                turbineList.totalProd = totals.totalProd;
+            }
             chartItems = allCharts[turbineList.activeGraph];
 
             if (chartItems) {
@@ -113,9 +125,9 @@ angular.module('turbine', ['turbine.directive'])
                     data: chartItems,
                     max: 30
                 };
-
-                $scope.$apply();
             }
+
+            $scope.$apply();
         }
 
         myVar = setInterval(function () {
