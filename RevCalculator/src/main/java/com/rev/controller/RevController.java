@@ -32,7 +32,9 @@ public class RevController {
     public ResponseType calculateRevenue(@RequestBody TurbineOutputParameters request) {
         System.out.println("TurbineOutputParameters  " + request.toString());
         revCalculatorService.calculateRevenue(request);
-        Message message = new Message(request.getName(), request.getPowerProd(), Calendar.getInstance().getTime().getTime());
+        SumModel sumModel = revCalculatorService.sumByName(request.getName());
+        Message message = new Message(request.getName(), request.getPowerProd(),
+                Calendar.getInstance().getTime().getTime(), sumModel.getRevenue(), sumModel.getProd());
         restTemplate.postForEntity(applicationProperties.getUrl() + "/turbines/websocket", message, Object.class);
         return new ResponseType("Ok", LocalDateTime.now());
     }
