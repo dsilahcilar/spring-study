@@ -65,7 +65,7 @@ angular.module('turbine', ['turbine.directive'])
         turbineList.isConnected = false;
 
 
-        var socket = new SockJS('uc-config-service.run.aws-usw02-pr.ice.predix.io:4443/websocket');
+        var socket = new SockJS('/websocket');
 
 
         stompClient = Stomp.over(socket);
